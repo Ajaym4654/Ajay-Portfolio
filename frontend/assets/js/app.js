@@ -103,14 +103,22 @@ if(navigator.geolocation){
 // ========== Contact Form ==========
 $("#contactForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const fd = new FormData(e.target);
+
+  const formData = {
+    name: e.target.name.value,
+    email: e.target.email.value,
+    message: e.target.message.value
+  };
 
   try {
     const res = await fetch("https://ajay-portfolio-m2jl.onrender.com/send.php", {
       method: "POST",
       mode: "cors", // explicit CORS
-      body: fd,
-      headers: { Accept: "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(formData),
     });
 
     if (!res.ok) throw new Error("Server error: " + res.status);
@@ -133,7 +141,6 @@ $("#contactForm")?.addEventListener("submit", async (e) => {
     alert("⚠️ Network error. Please try again later.");
   }
 });
-
 
 /* ===== Scroll reveal ===== */
 const observer = new IntersectionObserver((entries)=>{
