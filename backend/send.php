@@ -6,19 +6,30 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-// CORS + JSON headers
-header("Access-Control-Allow-Origin: *"); // allow Netlify to call Render
+// CORS + JSON headers (set early, before any output)
+header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
-header("Content-Type: application/json");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Content-Type: application/json; charset=UTF-8");
+
+// Block PHP notices/warnings from polluting JSON
+ini_set('display_errors', 0);
+error_reporting(0);
 
 $response = ["ok" => false];
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name = $_POST["name"] ?? "";
-    $email = $_POST["email"] ?? "";
-    $message = $_POST["message"] ?? "";
+// Handle preflight OPTIONS request (CORS)
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    echo json_encode(["ok" => true, "message" => "CORS preflight success"]);
+    exit;
+}
 
-    if (empty($name) || empty($email) || empty($message)) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $name    = trim($_POST["name"] ?? "");
+    $email   = trim($_POST["email"] ?? "");
+    $message = trim($_POST["message"] ?? "");
+
+    if ($name === "" || $email === "" || $message === "") {
         echo json_encode(["ok" => false, "error" => "All fields are required."]);
         exit;
     }
@@ -30,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'ajaym4654@gmail.com';  // your Gmail
-        $mail->Password   = 'ixcx oeyq otqt iord';  // Gmail App Password
+        $mail->Username   = 'ajaym4654@gmail.com';   // your Gmail
+        $mail->Password   = 'ixcx oeyq otqt iord';   // Gmail App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
@@ -59,4 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $response = ["ok" => false, "error" => "Invalid request method."];
 }
 
-echo json_encode($response);
+// Output clean JSON only
+echo json_encode($response, JSON_UNESCAPED_UNICODE);
+exit;
