@@ -6,37 +6,35 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-// CORS + JSON headers
+// ---------------- CORS + Headers ----------------
 header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Accept, X-Requested-With");
 header("Content-Type: application/json; charset=UTF-8");
 
-// Block PHP notices/warnings from polluting JSON
-ini_set('display_errors', 0);
-error_reporting(0);
-
-$response = ["ok" => false];
-
-// Handle preflight OPTIONS request (CORS)
-if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
-    echo json_encode(["ok" => true, "message" => "CORS preflight success"]);
+// ---------------- JSON Response Helper ----------------
+function respond($arr) {
+    echo json_encode($arr, JSON_UNESCAPED_UNICODE);
     exit;
 }
 
+// ---------------- Handle OPTIONS (preflight) ----------------
+if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
+    respond(["ok" => true, "message" => "CORS preflight success"]);
+}
+
+// ---------------- Handle POST ----------------
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Read JSON input from frontend
     $rawData = file_get_contents("php://input");
     $data = json_decode($rawData, true);
 
-    // Support both JSON + fallback to $_POST
+    // Support both JSON + fallback to form
     $name    = trim($data["name"] ?? ($_POST["name"] ?? ""));
     $email   = trim($data["email"] ?? ($_POST["email"] ?? ""));
     $message = trim($data["description"] ?? $data["message"] ?? ($_POST["message"] ?? ""));
 
     if ($name === "" || $email === "" || $message === "") {
-        echo json_encode(["ok" => false, "error" => "All fields are required."]);
-        exit;
+        respond(["ok" => false, "error" => "All fields are required."]);
     }
 
     $mail = new PHPMailer(true);
@@ -46,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = 'ajaym4654@gmail.com';   // your Gmail
-        $mail->Password   = 'ixcx oeyq otqt iord';   // Gmail App Password
+        $mail->Username   = 'ajaym4654@gmail.com';   // Gmail
+        $mail->Password   = 'ixcx oeyq otqt iord';   // App Password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
@@ -67,14 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ";
 
         $mail->send();
-        $response = ["ok" => true, "message" => "Message sent successfully!"];
+        respond(["ok" => true, "message" => "Message sent successfully!"]);
     } catch (Exception $e) {
-        $response = ["ok" => false, "error" => "Mailer Error: " . $mail->ErrorInfo];
+        respond(["ok" => false, "error" => "Mailer Error: " . $mail->ErrorInfo]);
     }
-} else {
-    $response = ["ok" => false, "error" => "Invalid request method."];
 }
 
-// Output clean JSON only
-echo json_encode($response, JSON_UNESCAPED_UNICODE);
-exit;
+// ---------------- Invalid Request ----------------
+respond(["ok" => false, "error" => "Invalid request method."]);
