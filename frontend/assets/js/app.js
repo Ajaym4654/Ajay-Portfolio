@@ -101,19 +101,33 @@ if(navigator.geolocation){
 }
 
 /* ===== Contact Form ===== */
-const form = $("#contactForm");
-const formMsg = $("#formMsg");
-if(form){
+const form = document.getElementById("contactForm");
+const formMsg = document.getElementById("formMsg");
+
+if (form) {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     formMsg.textContent = "Sending…";
+
     const fd = new FormData(form);
-    try{
-      const res = await fetch("../backend/send.php", { method:"POST", body: fd });
+
+    try {
+      const res = await fetch("https://ajay-portfolio-m2jl.onrender.com/send.php", {
+        method: "POST",
+        body: fd,
+      });
+
       const data = await res.json();
-      if(data.ok){ formMsg.textContent = "Sent! I'll get back to you soon."; form.reset(); }
-      else{ formMsg.textContent = data.error || "Failed to send. Try again."; }
-    }catch(_){ formMsg.textContent = "Network error."; }
+
+      if (data.ok) {
+        formMsg.textContent = "Sent! I'll get back to you soon.";
+        form.reset();
+      } else {
+        formMsg.textContent = data.error || "Failed to send. Try again.";
+      }
+    } catch (err) {
+      formMsg.textContent = "Network error.";
+    }
   });
 }
 
