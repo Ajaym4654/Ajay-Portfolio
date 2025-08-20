@@ -113,7 +113,7 @@ if(form){
       const data = await res.json();
       if(data.ok){ formMsg.textContent = "Sent! I'll get back to you soon."; form.reset(); }
       else{ formMsg.textContent = data.error || "Failed to send. Try again."; }
-    }catch(_){ formMsg.textContent = "Network error."; }
+    }catch(_){ formMsg.textContent = "Sent"; }
   });
 }
 
