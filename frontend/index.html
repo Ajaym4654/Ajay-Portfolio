@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ajay • Portfolio</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <!-- Header -->
+      <header class="top">
+        <div class="hamburger">☰</div>
+        <nav class="nav">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#edu">Education</a>
+          <a href="#skills">Skills</a>
+          <a href="#exp">Experience</a>
+          <a href="#work">Projects</a>
+          <a href="#contact">Contact</a>
+          <div>
+            <button id="themeBtn" class="theme-btn" aria-label="Toggle dark/light">
+          <span class="sun">☀️</span>
+          <span class="moon">🌙</span>
+        </button>
+          </div>
+        </nav>
+      </header>
+
+  <!-- Back to top button -->
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+
+  <div class="page">
+    <!-- ===== Sidebar ===== -->
+    <aside class="side">
+      <!-- Profile -->
+      <div class="me">
+        <img src="assets/img/profile.png" alt="Profile photo" class="me__photo" />
+        <div class="me__info">
+          <h1 class="me__name">Ajay</h1>
+          <p class="me__role">Sr. Healthcare Recruiter</p>
+        </div>
+        <!-- <button id="themeBtn" class="theme-btn" aria-label="Toggle dark/light">
+          <span class="sun">☀️</span>
+          <span class="moon">🌙</span>
+        </button> -->
+      </div>
+
+      <!-- Greeting -->
+      <div class="greet">
+        <div id="greetText">Hi!</div>
+        <div id="quote" class="quote">“Stay patient and trust your journey.”</div>
+      </div>
+
+      <section class="section hero mobile-hero" id="home">
+        <!-- <canvas id="particles"></canvas> -->
+        <div class="hero__content">
+        <h2>Hey, I'm Ajay 👋</h2>
+        <p>Web Developer</p>
+        <div class="btns">
+                <a href="#work" class="btn primary">See Projects</a>
+                <a href="#contact" class="btn ghost">Hire Me</a>
+              </div>
+        </div>
+      </section>
+
+      <!-- Quick facts -->
+      <div class="box">
+        <div class="row"><span>📅 Date</span><b id="todayText">--</b></div>
+        <div class="row"><span>⏰ Time</span><b id="timeText">--</b></div>
+        <div class="row"><span>🗺️ Location</span><b id="locText">Detecting…</b></div>
+      </div>
+
+      <!-- Contact -->
+      <div class="box">
+        <h3>Contact</h3>
+        <ul class="list">
+          <li>👤 Name: <b>Ajay</b></li>
+          <li>📞 Phone: <a>+91 78956 60364</a></li>
+          <li>📞 Alt: <a>+91 97581 77117</a></li>
+          <li>✉️ Email: <a>ajaym4654@gmail.com</a></li>
+          <li>🏠 Address: <span>Noida, India</span></li>
+        </ul>
+        <div class="btns">
+          <a href="https://drive.google.com/drive/folders/1RcQs-l-um7jQ3r727jRTYrWs3A7AJ_sz?usp=sharing" class="btn ghost" download>Download Resume</a>
+        </div>
+      </div>
+
+      <!-- Weather -->
+      <div class="box">
+        <h3>Current Weather</h3>
+        <div class="row"><span>🌡️ Temp</span><b id="wTemp">--</b></div>
+        <div class="row"><span>💧 Humidity</span><b id="wHum">--</b></div>
+        <div class="row"><span>💨 Wind</span><b id="wWind">--</b></div>
+        <div class="row"><span>⛈️ Rain</span><b id="wRain">--</b></div>
+        <div class="small">Auto-detected per device location.</div>
+      </div>
+
+      <!-- Theme Accent -->
+      <div class="box">
+        <h3>Theme Accent</h3>
+        <div class="accents">
+          <button class="accent" data-accent="#6e74ff" title="Purple"></button>
+          <button class="accent" data-accent="#00d3b4" title="Teal"></button>
+          <button class="accent" data-accent="#ff6f91" title="Pink"></button>
+        </div>
+      </div>
+
+
+      <!-- Footer -->
+      <footer ><span id="yearNow" class="mobile-year"></span></footer>
+    </aside>
+
+    <!-- ===== Main Content ===== -->
+    <main class="main">
+      <!-- Hero -->
+      <!-- <section id="home" class="section hero">
+        <canvas id="particles"></canvas>
+        <div class="hero__content">
+          <h2>Hey, I'm <span class="focus">Ajay</span> 👋</h2>
+          <p>Web Developer</p>
+          <div class="btns">
+            <a href="#work" class="btn primary">See Projects</a>
+            <a href="#contact" class="btn ghost">Hire Me</a>
+          </div>
+        </div>
+      </section> -->
+       <!-- Mobile Hero (only shows on small screen) -->
+
+
+  <!-- Desktop Hero (hidden on mobile) -->
+  <section class="section hero desktop-hero" id="home">
+    <canvas id="particles"></canvas>
+    <div class="hero__content">
+    <h1>Hey, I'm Ajay 👋</h1>
+    <p>Web Developer</p>
+    <div class="btns">
+            <a href="#work" class="btn primary">See Projects</a>
+            <a href="#contact" class="btn ghost">Hire Me</a>
+          </div>
+    </div>
+  </section>
+
+<!-- Education -->
+<section id="edu" class="section card">
+  <h3>Education</h3>
+<ul class="timeline">
+  <li>
+    <div class="content">
+      <div class="info">
+        <h4>BTech – CSE</h4>
+        <p class="sub">Uttaranchal University</p>
+      </div>
+      <span class="date">2019–2023</span>
+    </div>
+  </li>
+  <li>
+    <div class="content">
+      <div class="info">
+        <h4>Intermediate & High School</h4>
+        <p class="sub">St. Mary Sr. School</p>
+      </div>
+      <span class="date">2017–2019</span>
+    </div>
+  </li>
+</ul>
+</section>
+      <!-- Skills -->
+      <section id="skills" class="section grid">
+        <div class="card">
+          <h3>Soft Skills</h3>
+          <ul class="tags">
+            <li>Talent Sourcing</li>
+            <li>Negotiation</li>
+            <li>Teamwork</li>
+            <li>Time Management</li>
+            <li>Problem-Solving</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Technical Skills</h3>
+          <ul class="tags">
+            <li>HTML, CSS, JS</li>
+            <li>Bootstrap</li>
+            <li>MySQL</li>
+            <li>Responsive Design</li>
+            <li>PHPMailer</li>
+            <li>Python</li>
+            <li>Java</li>
+          </ul>
+        </div>
+      </section>
+
+<!-- Experience -->
+<section id="exp" class="section card">
+  <h3>Experience</h3>
+  <ul class="exp-list">
+    
+    <li class="exp-item">
+      <h4>Sr. Healthcare Recruiter <span>(Jan 2025 — Present)</span></h4>
+      <h5>Klimbnow</h5>
+      <ul>
+        <li>Managing the full hiring process.</li>
+        <li>Keeping talent pipelines ready.</li>
+      </ul>
+    </li>
+
+    <li class="exp-item">
+      <h4>Operation Executive <span>(May 2024 — Sep 2024)</span></h4>
+      <h5>Ocube Services</h5>
+      <ul>
+        <li>Document Verifications.</li>
+        <li>Keeping track of tasks and deadlines.</li>
+      </ul>
+    </li>
+
+    <li class="exp-item">
+      <h4>Healthcare Recruiter <span>(Oct 2023 — Apr 2024)</span></h4>
+      <h5>Unizon Taskforce Technology</h5>
+      <ul>
+        <li>Finding and attracting the right candidates.</li>
+        <li>Screening and matching talent to roles.</li>
+      </ul>
+    </li>
+
+    <li class="exp-item">
+      <h4>Healthcare Recruiter <span>(Jan 2025 — Sep 2023)</span></h4>
+      <h5>Midas Consulting</h5>
+      <ul>
+        <li>Hiring people for healthcare jobs.</li>
+        <li>Checking if they’re the right fit.</li>
+      </ul>
+    </li>
+
+  </ul>
+</section>
+
+
+      <!-- Projects -->
+      <section id="work" class="section card">
+        <h3>Projects</h3>
+        <div class="filters">
+          <button class="chip active" data-filter="all">All</button>
+        </div>
+        <div class="cards">
+          <article class="proj tilt" data-cat="ops">
+            <img src="assets/img/proj_1.jpg" alt="Shopping Website Preview" class="proj-img" />
+            <div class="proj-content">
+              <h4><a href="https://github.com/Ajaym4654/ShoppingWebsite" target="_blank">Shopping Website</a></h4>
+            </div>
+          </article>
+          <article class="proj tilt" data-cat="ui">
+            <img src="assets/img/proj_2.jpg" alt="Voice Based Email System Preview" class="proj-img" />
+            <div class="proj-content">
+              <h4><a href="https://github.com/Ajaym4654/Voice-Based-Email-System-For-Visual-Impaired" target="_blank">Voice Based Email System</a></h4>
+            </div>
+          </article>
+          <article class="proj tilt" data-cat="ui">
+            <img src="assets/img/proj_3.jpg" alt="Weather Forecast App Preview" class="proj-img" />
+            <div class="proj-content">
+              <h4><a href="https://github.com/Ajaym4654/WeatherForecastapp" target="_blank">Weather Forecast app</a></h4>
+            </div>
+          </article>
+          <article class="proj tilt" data-cat="ui">
+            <img src="assets/img/proj_4.jpg" alt="Kisan Saathi Farming Website Preview" class="proj-img" />
+            <div class="proj-content">
+              <h4><a href="https://github.com/Ajaym4654/Kisan-Saathi-Farming-Website" target="_blank">Kisan Saathi-Farming Website</a></h4>
+            </div>
+          </article>
+        </div>
+        Visit Github for More
+      </section>
+
+      <!-- Contact Form -->
+      <section id="contact" class="section card">
+        <h3>Contact</h3>
+        <form id="contactForm" class="form">
+          <label>Name
+            <input type="text" name="name" required placeholder="Your name" />
+          </label>
+          <label>Email
+            <input type="email" name="email" required placeholder="you@email.com" />
+          </label>
+          <label class="full">Description
+            <textarea name="message" required placeholder="Tell me what you need…"></textarea>
+          </label>
+          <div class="form-row">
+            <button class="btn primary" type="submit">Send</button>
+            <span id="formMsg" class="form-msg" aria-live="polite"></span>
+          </div>
+        </form>
+      </section>
+
+      <section id="social-media">
+  <h2>Connect with Me</h2>
+  <div class="social-links">
+    <a href="https://www.facebook.com/Ajaym4654/" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://twitter.com/Ajaym4654" target="_blank" aria-label="Twitter">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="https://www.instagram.com/xajaym4654/" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/ajay-mridha-473669209/" target="_blank" aria-label="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://github.com/Ajaym4654" target="_blank" aria-label="GitHub">
+      <i class="fab fa-github"></i>
+    <a href="https://wa.me/917895660364" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</section>
+
+      <!-- Footer -->
+      <footer class="foot">
+        Copyright ©2025 All rights reserved | This template is made with ❤️ by Ajay
+      </footer>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

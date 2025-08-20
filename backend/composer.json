@@ -1,0 +1,5 @@
+{
+  "name": "ajju/portfolio-contact",
+  "description": "PHPMailer contact form for portfolio (ultra edition)",
+  "require": { "phpmailer/phpmailer": "^6.9" }
+}
