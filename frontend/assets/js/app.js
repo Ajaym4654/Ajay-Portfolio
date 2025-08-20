@@ -100,36 +100,40 @@ if(navigator.geolocation){
   $("#locText").textContent = "Unsupported";
 }
 
-/* ===== Contact Form ===== */
-const form = document.getElementById("contactForm");
-const formMsg = document.getElementById("formMsg");
+// ========== Contact Form ==========
+$("#contactForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
 
-if (form) {
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    formMsg.textContent = "Sending…";
+  try {
+    const res = await fetch("https://ajay-portfolio-m2jl.onrender.com/send.php", {
+      method: "POST",
+      mode: "cors", // explicit CORS
+      body: fd,
+      headers: { Accept: "application/json" },
+    });
 
-    const fd = new FormData(form);
+    if (!res.ok) throw new Error("Server error: " + res.status);
 
+    let data;
     try {
-      const res = await fetch("https://ajay-portfolio-m2jl.onrender.com/send.php", {
-        method: "POST",
-        body: fd,
-      });
-
-      const data = await res.json();
-
-      if (data.ok) {
-        formMsg.textContent = "Sent! I'll get back to you soon.";
-        form.reset();
-      } else {
-        formMsg.textContent = data.error || "Failed to send. Try again.";
-      }
-    } catch (err) {
-      formMsg.textContent = "Network error.";
+      data = await res.json();
+    } catch {
+      throw new Error("Invalid JSON from server");
     }
-  });
-}
+
+    if (data.ok) {
+      alert("✅ Message sent successfully!");
+      e.target.reset();
+    } else {
+      alert("❌ " + (data.error || "Something went wrong on server."));
+    }
+  } catch (err) {
+    console.error(err);
+    alert("⚠️ Network error. Please try again later.");
+  }
+});
+
 
 /* ===== Scroll reveal ===== */
 const observer = new IntersectionObserver((entries)=>{
