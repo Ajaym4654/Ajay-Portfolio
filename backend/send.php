@@ -6,7 +6,7 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
-// CORS + JSON headers (set early, before any output)
+// CORS + JSON headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
@@ -25,9 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
 }
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $name    = trim($_POST["name"] ?? "");
-    $email   = trim($_POST["email"] ?? "");
-    $message = trim($_POST["message"] ?? "");
+    // Read JSON input from frontend
+    $rawData = file_get_contents("php://input");
+    $data = json_decode($rawData, true);
+
+    // Support both JSON + fallback to $_POST
+    $name    = trim($data["name"] ?? ($_POST["name"] ?? ""));
+    $email   = trim($data["email"] ?? ($_POST["email"] ?? ""));
+    $message = trim($data["description"] ?? $data["message"] ?? ($_POST["message"] ?? ""));
 
     if ($name === "" || $email === "" || $message === "") {
         echo json_encode(["ok" => false, "error" => "All fields are required."]);
