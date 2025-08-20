@@ -109,7 +109,7 @@ if(form){
     formMsg.textContent = "Sending…";
     const fd = new FormData(form);
     try{
-      const res = await fetch("../backend/send.php", { method:"POST", body: fd });
+      const res = await fetch("https://ajay-portfolio-m2jl.onrender.com/send.php", { method:"POST", body: fd });
       const data = await res.json();
       if(data.ok){ formMsg.textContent = "Sent! I'll get back to you soon."; form.reset(); }
       else{ formMsg.textContent = data.error || "Failed to send. Try again."; }
