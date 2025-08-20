@@ -33,8 +33,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $mail->Port       = 587;
 
         // Recipients
-        $mail->setFrom($email, $name);
-        $mail->addAddress('ajaym4654@gmail.com'); // where you receive mails
+        $mail->setFrom('ajaym4654@gmail.com', 'Portfolio Website'); // must be your Gmail
+        $mail->addAddress('ajaym4654@gmail.com'); // where you want to receive mails
+        $mail->addReplyTo($email, $name); // reply goes to the user
 
         // Content
         $mail->isHTML(true);
