@@ -226,5 +226,5 @@ console.log('%cLooking at the code? Feel free to reach out!', 'font-size: 14px; 
 console.log('%c📧 ajaym4654@gmail.com', 'font-size: 14px; color: #10b981;');
 
 
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299556778081255"
-     crossorigin="anonymous"></script>
+async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299556778081255"
+     crossorigin="anonymous">
