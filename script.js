@@ -225,6 +225,3 @@ console.log('%c👋 Hi there!', 'font-size: 20px; color: #3b82f6; font-weight: b
 console.log('%cLooking at the code? Feel free to reach out!', 'font-size: 14px; color: #4a5568;');
 console.log('%c📧 ajaym4654@gmail.com', 'font-size: 14px; color: #10b981;');
 
-
-async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8299556778081255"
-     crossorigin="anonymous">
