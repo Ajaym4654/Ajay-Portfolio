@@ -11,6 +11,29 @@ window.addEventListener('scroll', () => {
     }
 });
 
+
+
+
+const dot = document.querySelector('.cursor-dot');
+const outline = document.querySelector('.cursor-outline');
+
+window.addEventListener('mousemove', (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    dot.style.left = `${posX}px`;
+    dot.style.top = `${posY}px`;
+
+    outline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 400, fill: "forwards" });
+});
+
+
+
+
+
 // Mobile navigation toggle
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
