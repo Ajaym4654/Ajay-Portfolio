@@ -197,6 +197,46 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// Custom mouse pointer mover
+const pointerMover = document.getElementById('pointerMover');
+let pointerTargetX = 0;
+let pointerTargetY = 0;
+let pointerCurrentX = 0;
+let pointerCurrentY = 0;
+const pointerEase = 0.18;
+
+function animatePointer() {
+    if (pointerMover) {
+        pointerCurrentX += (pointerTargetX - pointerCurrentX) * pointerEase;
+        pointerCurrentY += (pointerTargetY - pointerCurrentY) * pointerEase;
+        pointerMover.style.left = `${pointerCurrentX}px`;
+        pointerMover.style.top = `${pointerCurrentY}px`;
+    }
+    requestAnimationFrame(animatePointer);
+}
+
+window.addEventListener('mousemove', (event) => {
+    pointerTargetX = event.clientX;
+    pointerTargetY = event.clientY;
+    if (pointerMover) {
+        pointerMover.classList.add('visible');
+    }
+});
+
+window.addEventListener('mouseout', () => {
+    if (pointerMover) {
+        pointerMover.classList.remove('visible');
+    }
+});
+
+window.addEventListener('mouseover', () => {
+    if (pointerMover) {
+        pointerMover.classList.add('visible');
+    }
+});
+
+requestAnimationFrame(animatePointer);
+
 // Form validation (if you add a contact form later)
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
